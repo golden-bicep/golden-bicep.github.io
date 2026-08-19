@@ -56,7 +56,17 @@
     letter-spacing: -.025em;
     margin: 0 0 .5rem;
   }
-  .tagline { color: var(--muted); margin: 0 0 2.25rem; font-size: 1.05rem; }
+  .tagline { color: var(--muted); margin: 0 0 2rem; font-size: 1.05rem; }
+  /* Apple requires the badge be used unmodified, with clear space around it of at
+     least 10% of its height. Nothing here recolors, crops, or overlays it. */
+  .badge-link {
+    display: inline-block;
+    margin: 0 0 2.25rem;
+    padding: 6px;
+    border-radius: 10px;
+  }
+  .badge-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .badge { display: block; height: 54px; width: auto; }
   a.privacy {
     color: var(--accent);
     text-decoration-thickness: 1px;
@@ -71,6 +81,17 @@
          alt="Golden Bicep app icon — a flexed golden bicep">
     <h1>Golden Bicep</h1>
     <p class="tagline">An iOS workout tracker. Log your sessions, track your body measurements, and watch your progress on beautiful charts.</p>
+
+    <a class="badge-link" href="https://apps.apple.com/app/id6797582908"
+       target="_blank" rel="noopener noreferrer">
+      <picture>
+        <!-- Apple's white lockup is the one specified for dark backgrounds. -->
+        <source srcset="./app-store-badge-white.svg" media="(prefers-color-scheme: dark)">
+        <img class="badge" src="./app-store-badge.svg"
+             alt="Download on the App Store" width="162" height="54">
+      </picture>
+    </a>
+
     <p><a class="privacy" href="./privacy/">Privacy Policy</a></p>
   </main>
 </body>
