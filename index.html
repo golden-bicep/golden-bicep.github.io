@@ -30,6 +30,7 @@
   html { height: 100%; }
   body {
     margin: 0;
+    overflow-x: clip;
     min-height: 100vh;
     background: var(--sheet) no-repeat fixed;
     color: var(--fg);
@@ -101,6 +102,34 @@
     margin: 2rem 0 .4rem;
     color: var(--accent);
   }
+  /* Breaks out of the text column so all five fit side by side on desktop;
+     on narrower screens the row scrolls sideways and snaps to each shot. */
+  .shots {
+    display: flex;
+    gap: 1rem;
+    width: 100vw;
+    margin: 2.25rem calc(50% - 50vw) .5rem;
+    padding: .75rem max(1.25rem, calc((100vw - 66rem) / 2)) 1.75rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 1.25rem;
+    list-style: none;
+    scrollbar-width: none;
+  }
+  .shots::-webkit-scrollbar { display: none; }
+  .shots li { flex: 0 0 auto; scroll-snap-align: start; }
+  .shots li:first-child { margin-left: auto; }
+  .shots li:last-child { margin-right: auto; }
+  .shots img {
+    display: block;
+    width: 12.25rem;
+    height: auto;
+    border-radius: 1.25rem;
+    box-shadow: 0 10px 28px rgba(60, 40, 0, .18), 0 0 0 1px rgba(0, 0, 0, .05);
+  }
+  @media (max-width: 30rem) {
+    .shots img { width: 62vw; }
+  }
   .links { margin: 0; font-size: .95rem; }
   .links a {
     color: var(--accent);
@@ -148,6 +177,19 @@
     <section class="about" aria-label="About Golden Bicep">
       <p class="lead">Golden Bicep is a workout tracker for people who already know their way around a gym.</p>
       <p>No beginner tutorials. No forced programs. No sign-up. No clutter. Just a fast, precise way to log your sessions, track your body, and see whether your training is actually working.</p>
+
+      <ul class="shots" aria-label="App screenshots">
+      <li><img src="./screenshots/01.jpg" width="600" height="1303" loading="lazy" decoding="async"
+               alt="Golden Bicep: your fitness routine, on your terms"></li>
+      <li><img src="./screenshots/02.jpg" width="600" height="1303" loading="lazy" decoding="async"
+               alt="Week view of the workout calendar with sessions placed at their training times"></li>
+      <li><img src="./screenshots/03.jpg" width="600" height="1303" loading="lazy" decoding="async"
+               alt="Statistics screen with max weight and total tonnage charts"></li>
+      <li><img src="./screenshots/04.jpg" width="600" height="1303" loading="lazy" decoding="async"
+               alt="Library screen listing workout programs and exercise categories"></li>
+      <li><img src="./screenshots/05.jpg" width="600" height="1303" loading="lazy" decoding="async"
+               alt="Workout program editor with training and rest days"></li>
+      </ul>
 
       <h2>A calendar that makes sense</h2>
       <p>Your training lives on a real calendar, with Day, Week, and Month views that put every session at the time you actually train it. Move a workout to another day when life gets in the way. Drop in a one-off session without touching your program. See your whole week at a glance instead of scrolling through a list.</p>
